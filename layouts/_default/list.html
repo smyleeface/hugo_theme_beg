@@ -11,7 +11,8 @@
     {{ end }}
 
     <ul class="p-articles">
-      {{ range (.Paginate .Data.Pages).Pages }}
+      {{ $paginator := .Paginate (where .Site.RegularPages "Section" "post") }}
+      {{ range $paginator.Pages }}
       <li>{{ .Render "li" }}</li>
       {{ end }}
     </ul>
